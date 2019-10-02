@@ -18,9 +18,23 @@ SciViews::R
 bourdon <- read("./data/t-b.xlsx" , type = "xlsx")
 ```
 
+```{r import 2}
+bourdon_2 <- read("./data/etho_tp2.xlsx" , type = "xlsx")
+
+```
+
 ```{r}
-chart(data = bourdon, ~ ) +
+## HISTOGRAMME 
+
+chart(data = bourdon_2, ~ size) +
   geom_histogram(bins = 50) +
-  ylab("Effectifs")
+  ylab("Effectifs") 
+  
+```
+
+
+```{r}
+chart(data = bourdon_2, size ~ weight) +
+  geom_point()
 ```
 
