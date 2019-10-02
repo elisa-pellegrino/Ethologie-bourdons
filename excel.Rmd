@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+author: "Philippe Grosjean"
+date: "10/2/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+SciViews::R
+```
+
+```{r}
+?readxl::read_excel
+```
+
+```{r importation}
+bourdon <- read("./data/t-b.xlsx" , type = "xlsx")
+```
+
+```{r}
+chart(data = bourdon, ~ ) +
+  geom_histogram(bins = 50) +
+  ylab("Effectifs")
+```
+
