@@ -21,17 +21,14 @@ bourdon_2 <- read("./data/etho_tp2.xlsx" , type = "xlsx")
 
 ```
 
-```{r}
-## HISTOGRAMME 
 
-chart(data = bourdon_2, ~ size) +
-  geom_histogram(bins = 50) +
-  ylab("Effectifs") 
-  
-```
 
 
 ```{r}
 bourdon_cn <- read("./data/Bourdons_normal.xlsx" , type = "xlsx")
+```
+
+```{r}
+student <- select(bourdon_2, weight, size_cr)
 ```
 
