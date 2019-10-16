@@ -1,6 +1,6 @@
 ---
-title: "Untitled"
-author: "Philippe Grosjean"
+title: "Bourdons, the way to go!"
+author: "Elisa Pellegrino"
 date: "10/2/2019"
 output: html_document
 ---
@@ -14,9 +14,7 @@ SciViews::R
 ?readxl::read_excel
 ```
 
-```{r importation}
-bourdon <- read("./data/t-b.xlsx" , type = "xlsx")
-```
+
 
 ```{r import 2}
 bourdon_2 <- read("./data/etho_tp2.xlsx" , type = "xlsx")
@@ -34,7 +32,6 @@ chart(data = bourdon_2, ~ size) +
 
 
 ```{r}
-chart(data = bourdon_2, size ~ weight) +
-  geom_point()
+bourdon_cn <- read("./data/Bourdons_normal.xlsx" , type = "xlsx")
 ```
 
