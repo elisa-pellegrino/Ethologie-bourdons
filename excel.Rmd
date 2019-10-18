@@ -15,10 +15,13 @@ SciViews::R
 ```
 
 
-
 ```{r import 2}
 bourdon_2 <- read("./data/etho_tp2.xlsx" , type = "xlsx")
 
+```
+
+```{r}
+ouvri <- read("./data/que_ouvri.xlsx")
 ```
 
 ##TEST DE STUDENT MASSE CELLULE RADIALE
@@ -41,6 +44,7 @@ cor.test(data = bourdon_2, ~ weight + size_cr, alternative = "greater")
 
 ##REGRESSION LINEAIRE 
 
+### REINE+OUVRIERE
 ```{r}
 (lm. <- lm(data = bourdon_2, weight ~ size_cr))
 summary(lm.)
@@ -52,9 +56,10 @@ lm. %>.% (function(lm, model = lm[["model"]], vars = names(model))
   chart(model, aes_string(x = vars[2], y = vars[1])) +
   geom_point() +
   stat_smooth(method = "lm", formula = y ~ x))(.)+
-  labs(y = "Masse (g)", x = "Taille de la cellule radiale (mm)") +
-   xlim(0, 5)+ylim(0, 0.95)
+  labs(y = "Masse (g)", x = "Taille de la cellule radiale (mm)") 
 ```
+
+
 
 ### Residuals vs fitted 
 ```{r}
@@ -87,5 +92,19 @@ lm. %>.%
   labs(x = "Fitted values",
     y = expression(bold(sqrt(abs("Standardized residuals"))))) +
   ggtitle("Scale-Location")
+```
+
+###OUVRIERES
+```{r}
+(lm1. <- lm(data = ouvri, weight ~ size_cr))
+summary(lm1.)
+```
+
+```{r}
+lm1. %>.% (function(lm, model = lm[["model"]], vars = names(model))
+  chart(model, aes_string(x = vars[2], y = vars[1])) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x))(.)+
+  labs(y = "Masse (g)", x = "Taille de la cellule radiale (mm)") 
 ```
 
