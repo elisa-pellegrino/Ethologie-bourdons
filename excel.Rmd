@@ -99,12 +99,44 @@ lm. %>.%
 (lm1. <- lm(data = ouvri, weight ~ size_cr))
 summary(lm1.)
 ```
-
+### Interpretation graphique
 ```{r}
 lm1. %>.% (function(lm, model = lm[["model"]], vars = names(model))
   chart(model, aes_string(x = vars[2], y = vars[1])) +
   geom_point() +
   stat_smooth(method = "lm", formula = y ~ x))(.)+
   labs(y = "Masse (g)", x = "Taille de la cellule radiale (mm)") 
+```
+
+### Residuals vs fitted
+```{r}
+lm1. %>.%
+  chart(broom::augment(.), .resid ~ .fitted) +
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  geom_smooth(se = FALSE, method = "loess", formula = y ~ x) +
+  labs(x = "Fitted values", y = "Residuals") +
+  ggtitle("Residuals vs Fitted")
+```
+
+### Normal Q-Q
+```{r}
+lm1. %>.%
+  chart(broom::augment(.), aes(sample = .std.resid)) +
+  geom_qq() +
+  geom_qq_line(colour = "darkgray") +
+  labs(x = "Theoretical quantiles", y = "Standardized residuals") +
+  ggtitle("Normal Q-Q")
+```
+
+### Scale location
+```{r}
+lm1. %>.%
+  chart(broom::augment(.), sqrt(abs(.std.resid)) ~ .fitted) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "loess", formula = y ~ x) +
+  labs(x = "Fitted values",
+    y = expression(bold(sqrt(abs("Standardized residuals"))))) +
+  ggtitle("Scale-Location")
 ```
 
