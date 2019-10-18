@@ -51,7 +51,9 @@ summary(lm.)
 lm. %>.% (function(lm, model = lm[["model"]], vars = names(model))
   chart(model, aes_string(x = vars[2], y = vars[1])) +
   geom_point() +
-  stat_smooth(method = "lm", formula = y ~ x))(.)
+  stat_smooth(method = "lm", formula = y ~ x))(.)+
+  labs(y = "Masse (g)", x = "Taille de la cellule radiale (mm)") +
+   xlim(0, 5)+ylim(0, 0.95)
 ```
 
 ### Residuals vs fitted 
