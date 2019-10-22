@@ -19,6 +19,13 @@ SciViews::R
 ouvri <- read("../data/ouvrieres.xlsx")
 ```
 
+
+```{r}
+o_sex <- select(ouvri, masse, taille, taille_cr)
+(o_sex_corr <- correlation(o_sex))
+plot(o_sex_corr)
+```
+
 ### NUAGE DE POINTS
 
 ```{r}
@@ -111,6 +118,7 @@ lm1. %>.%
   labs(x = "Leverage", y = "Standardized residuals") +
   ggtitle("Residuals vs Leverage")
 ```
+
 
 
 
