@@ -19,19 +19,21 @@ SciViews::R
 ouvri <- read("../data/ouvrieres.xlsx")
 ```
 
-
+### MATRICE DE CORRELATION
 ```{r}
 o_sex <- select(ouvri, masse, taille, taille_cr)
 (o_sex_corr <- correlation(o_sex))
 plot(o_sex_corr)
 ```
 
+La masse et la cellule radiale ont la plus grande correlation (0,71)
+
 ### NUAGE DE POINTS
 
 ```{r}
 chart(data = ouvri, taille_cr ~ masse) +
   geom_point() 
-  plotly::ggplotly()
+
 
 
 ```
@@ -53,8 +55,6 @@ lm1. %>.%
   geom_point() +
   stat_smooth(method = "lm", formula = y ~ x))(.)
 
-
-plotly::ggplotly()
 ```
 
 ### Residuals vs fitted
@@ -67,7 +67,6 @@ lm1. %>.%
   labs(x = "Fitted values", y = "Residuals") +
   ggtitle("Residuals vs Fitted")
 
- plotly::ggplotly()
 
 ```
 
