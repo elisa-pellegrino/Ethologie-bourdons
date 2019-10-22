@@ -16,13 +16,13 @@ SciViews::R
 
 
 ```{r}
-ouvri <- read("../data/que_ouvri.xlsx")
+ouvri <- read("../data/ouvrieres.xlsx")
 ```
 
 ### NUAGE DE POINTS
 
 ```{r}
-chart(data = ouvri, taille_cr ~ poids) +
+chart(data = ouvri, taille_cr ~ masse) +
   geom_point() 
   plotly::ggplotly()
 
@@ -33,7 +33,7 @@ chart(data = ouvri, taille_cr ~ poids) +
 ##REGRESSION LINEAIRE 
 
 ```{r}
-(lm1. <- lm(data = ouvri, taille_cr ~ poids))
+(lm1. <- lm(data = ouvri, taille_cr ~ masse))
 summary(lm1.)
 ```
 
@@ -101,6 +101,16 @@ plotly::ggplotly()
 ```
 
 
+```{r}
+lm1. %>.%
+  chart(broom::augment(.), .std.resid ~ .hat %size=% .cooksd) +
+  geom_point() +
+  geom_smooth(se = FALSE, size = 0.5, method = "loess", formula = y ~ x) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  labs(x = "Leverage", y = "Standardized residuals") +
+  ggtitle("Residuals vs Leverage")
+```
 
 
 
