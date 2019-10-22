@@ -39,7 +39,8 @@ cor.test(data = bourdon, ~ masse + taille_cr, alternative = "greater")
 (lm. <- lm(data = bourdon, masse ~ taille_cr))
 summary(lm.)
 ```
-
+ 
+ 
 ### Residuals vs fitted 
 ```{r}
 lm. %>.%
